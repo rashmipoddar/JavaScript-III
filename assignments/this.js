@@ -39,12 +39,16 @@ myObject.introduce();
 
 // code example for New Binding
 function Animal(animalAttributes){
+  // Behind the scenes
+  // this = Object.create(Animal.prototype)
   this.name = animalAttributes.name;
   this.species = animalAttributes.species;
   this.greet = function() {
     console.log(this);
     console.log(`Hi, my name is ${this.name}`); 
   }
+  // return this
+  // These things are automatically done when using the new keyword to create a new instance.
 }
 
 let dog = new Animal({

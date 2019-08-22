@@ -33,11 +33,19 @@ GameObject.prototype.destroy = function() {
 */
 
 function CharacterStats(characterStatsAttribute) {
-  GameObject.call(this, characterStatsAttribute);
+  GameObject.call(this, characterStatsAttribute); 
+  // Calling the GameObject with this referencing the instance of CharacterStats because we are using .call instead of referring the 
+  // GameObject instance which happens because of implicit binding. GameObject neeeds an argument which is passed by passing 
+  // characterStatsAttribute. The first argument of the call function always defines the context in which the function is being called.
+  // The this keyword or the this object will now have a createdAt, name & dimension property because its defined in GameObject.
   this.healthPoints = characterStatsAttribute.healthPoints;
 }
 
 CharacterStats.prototype = Object.create(GameObject.prototype);
+// Line 44 says that if we look for a method on CharacterStats.prototype and we don't find it we delegate it to GameObject.prototype.
+// This line however defines the constructor function of CharacterStats as GameObject. To remedy that we should set
+// CharacterStats.prototype.constructor = CharacterStats
+// Reference - https://www.youtube.com/watch?v=MiKdRJc4ooE
 CharacterStats.prototype.takeDamage = function() {
   return `${this.name} took damage.`;
 }
