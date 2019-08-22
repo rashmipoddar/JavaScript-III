@@ -40,7 +40,7 @@ myObject.introduce();
 // code example for New Binding
 function Animal(animalAttributes){
   // Behind the scenes
-  // this = Object.create(Animal.prototype)
+  // let this = Object.create(Animal.prototype)
   this.name = animalAttributes.name;
   this.species = animalAttributes.species;
   this.greet = function() {
